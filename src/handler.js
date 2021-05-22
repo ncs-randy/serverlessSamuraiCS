@@ -1,5 +1,8 @@
 'use strict';
 
+const AWS = require("aws-sdk");
+AWS.config.update({ region: "ap-southeast-1"});
+
 module.exports.TestServerlessLambda = event => {
   console.log(event)
   return {
