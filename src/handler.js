@@ -52,6 +52,6 @@ const sendRes = (status, body) => {
       },
       body: body
   };
-  
+  console.log(response);
   return response;
 };
