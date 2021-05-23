@@ -32,7 +32,7 @@ module.exports.GetDeliveryEvent = async (event) => {
 
   try {
     const data = await documentClient.query(params).promise();
-    responseBody = JSON.stringify(data.items);
+    responseBody = JSON.stringify(data.Items);
     statusCode= 200;
     //sendRes(200, data.Items);
   } catch (err) {
