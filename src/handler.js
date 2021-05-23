@@ -45,7 +45,7 @@ module.exports.GetDeliveryEvent = async (event) => {
       }
     );*/
   }
-
+  console.log(responseBody);
   const response = {
     statusCode: statusCode,
     headers: {
