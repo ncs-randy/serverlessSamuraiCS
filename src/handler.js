@@ -32,12 +32,12 @@ module.exports.GetDeliveryEvent = async (event) => {
     const data = await documentClient.query(params).promise();
     sendRes(200, JSON.stringify(data.Items));
   } catch (err) {
-    sendRes(403, JSON.stringify(
+    sendRes(403, 
       {
-        message: "Unable to get Delivery Events: ${err}",
+        message: `Unable to get Delivery Events: ${err}`,
         input: tracking
       }
-    ));
+    );
   }
 
   // Use this code if you don't use the http event with the LAMBDA-PROXY integration
