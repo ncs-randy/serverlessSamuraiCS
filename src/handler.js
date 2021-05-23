@@ -34,8 +34,8 @@ module.exports.GetDeliveryEvent = async (event) => {
   } catch (err) {
     sendRes(403, 
       {
-        message: `Unable to get Delivery Events: ${err}`,
-        input: tracking
+        "message": `Unable to get Delivery Events: ${err}`,
+        "input": tracking
       }
     );
   }

@@ -26,11 +26,11 @@ provider:
   region: ap-southeast-1
 
 # you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:Query"
+      Resource: arn:aws:dynamodb:ap-southeast-1:696494913841:table/DeliveryEvents
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:PutObject"
