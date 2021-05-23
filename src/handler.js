@@ -2,6 +2,8 @@
 
 const AWS = require("aws-sdk");
 AWS.config.update({ region: "ap-southeast-1"});
+let responseBody = "";
+let statusCode = 0;
 
 module.exports.GetDeliveryEvent = async (event) => {
   console.log(event);
@@ -30,15 +32,30 @@ module.exports.GetDeliveryEvent = async (event) => {
 
   try {
     const data = await documentClient.query(params).promise();
+    responseBody = JSON.stringify(data.items);
+    statusCode= 200;
     sendRes(200, data.Items);
   } catch (err) {
-    sendRes(403, 
+    responseBody = `Unable to get Delivery Events: ${err}`;
+    statusCode = 403;
+    /*sendRes(403, 
       {
         "message": `Unable to get Delivery Events: ${err}`,
         "input": tracking
       }
-    );
+    );*/
   }
+
+  const response = {
+    statusCode: statusCode,
+    headers: {
+      "Content-Type": "application/json",
+      "access-control-allow-origin": "*"
+    },
+    body: responseBody
+  };
+  console.log(response);
+  return response;
 
   // Use this code if you don't use the http event with the LAMBDA-PROXY integration
   // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
