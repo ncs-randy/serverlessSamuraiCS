@@ -34,7 +34,7 @@ module.exports.GetDeliveryEvent = async (event) => {
     const data = await documentClient.query(params).promise();
     responseBody = JSON.stringify(data.items);
     statusCode= 200;
-    sendRes(200, data.Items);
+    //sendRes(200, data.Items);
   } catch (err) {
     responseBody = `Unable to get Delivery Events: ${err}`;
     statusCode = 403;
