@@ -6,7 +6,6 @@ AWS.config.update({ region: "ap-southeast-1"});
 module.exports.GetDeliveryEvent = async (event) => {
   console.log(event);
   // create connection to dynamodb
-  const ddb = new AWS.DynamoDB({ apiVersion: "2012-10-08"});
   const documentClient = new AWS.DynamoDB.DocumentClient({ region: "ap-southeast-1"});
 
   /*Get tracking ID from frontend */
@@ -27,7 +26,7 @@ module.exports.GetDeliveryEvent = async (event) => {
     ExpressionAttributeValues: {
       ":t": tracking
     }
-  }
+  };
 
   try {
     const data = await documentClient.query(params).promise();
