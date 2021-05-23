@@ -46,11 +46,12 @@ module.exports.GetDeliveryEvent = async (event) => {
 
 const sendRes = (status, body) => {
   var response = {
-      statusCode: status,
-      headers: {
+      "statusCode": status,
+      "headers": {
           "Content-Type" : "application/json"
       },
-      body: body
+      "body": JSON.stringify(body),
+      "isBase64Encoded": false
   };
   console.log(response);
   return response;
