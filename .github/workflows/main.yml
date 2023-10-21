@@ -23,14 +23,11 @@ jobs:
       - name: npm install # install dependencies
         run: npm i
 
-      - name: npm install app
-        run:  cd ./app && npm i
-
       - name: npm ci
-        run: npm ci --prefix ./app
+        run: npm ci 
 
       - name: build
-        run: npm --prefix ./app run build
+        run: npm run build
         
   deploy:
     name: deploy
