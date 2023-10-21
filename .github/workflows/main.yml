@@ -25,13 +25,26 @@ jobs:
 
       - name: npm ci
         run: npm ci 
-
-      - name: build
-        run: npm run build
         
-  deploy:
-    name: deploy
+  sonarqube:
+    name: SonarQube Trigger
     needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checking out
+      uses: actions/checkout@master
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@v1.2.0
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
+        
+  publish:
+    name: publish to lambda
+    needs: sonarqube
     runs-on: ubuntu-latest
     strategy:
       matrix:
