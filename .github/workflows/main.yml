@@ -5,8 +5,36 @@ on:
     branches: [main]
 
 jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest # tells github where to build 
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+  
+      - name: Node setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: npm config set package-lock true # set to true to generate package-lock.json on npm install
+        run: npm config set package-lock true
+
+      - name: npm install # install dependencies
+        run: npm i
+
+      - name: npm install app
+        run:  cd ./app && npm i
+
+      - name: npm ci
+        run: npm ci --prefix ./app
+
+      - name: build
+        run: npm --prefix ./app run build
+        
   deploy:
     name: deploy
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
