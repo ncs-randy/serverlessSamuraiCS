@@ -30,7 +30,7 @@ provider:
     - Effect: "Allow"
       Action:
         - "dynamodb:Query"
-      Resource: "arn:aws:dynamodb:ap-southeast-1:696494913841:table/DeliveryEvents"
+      Resource: "arn:aws:dynamodb:ap-southeast-1:684950374625:table/DeliveryEvents"
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:PutObject"
@@ -46,6 +46,6 @@ provider:
 #    variable1: value1
 
 functions:
-  GetDeliveryEvent:
+  GetDeliveryEvent2:
     handler: src/handler.GetDeliveryEvent
     timeout: 60 #seconds
