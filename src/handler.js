@@ -11,6 +11,7 @@ module.exports.GetDeliveryEvent = async (event) => {
   const documentClient = new AWS.DynamoDB.DocumentClient({ region: "ap-southeast-1"});
 
   /*Get tracking ID from frontend */ 
+  /*testing*/
   let tracking = "";
 
   if (event.queryStringParameters && event.queryStringParameters.tracking) {
