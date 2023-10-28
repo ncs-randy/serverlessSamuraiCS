@@ -46,6 +46,6 @@ provider:
 #    variable1: value1
 
 functions:
-  GetDeliveryEvent2:
+  GetDeliveryEvent:
     handler: src/handler.GetDeliveryEvent
     timeout: 60 #seconds
